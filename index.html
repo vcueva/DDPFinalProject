@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Final Project</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Final Project">
+  <meta name="author" content="Victor de la Cueva">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/js/slides" 
+    src="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Final Project</h1>
+    <h2>Sample vs Population</h2>
+    <p>Victor de la Cueva<br/>Data Science Specialization Student</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Sample vs Population</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>There are two very common parameters to describe a population: mean and standar deviation</li>
+<li>If you have a data set (sample) taken from the a population, and you want to know the population parameters, its is possible to obtain an estimation of these parameters based on the data set.</li>
+<li>A good estimation for the population mean \(\mu\) is the mean of the sample \(\bar{x}\), that is calculated as \[\bar{x} = \frac{\sum x_i}{n}\]</li>
+<li>In the same form, a good estimation for the population standar deviation \(\sigma\) is the sample standar deviation \(s\), that is calculated as \[s = \sqrt{\frac{\sum (x_i - \bar{x})}{n-1}}\]</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Sample Size and functions in R</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The estimators will be better if the sample size is bigger.</li>
+<li>The bigger the size of the sample, the better the population parameters are estimated by the sample parameters.</li>
+<li>In R, there is a function called \(mean\) to calculate the sample mean. For a data set contained in \(X\) its format is:</li>
+</ul>
+
+<pre><code>mean(X)
+</code></pre>
+
+<ul>
+<li>There is a function called \(sd\) to calculate the standar deviation. For a data set contained in \(X\) its format is:</li>
+</ul>
+
+<pre><code>sd(X)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>App instructions and an example</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>My shiny interactive app allows the user to select values for the size data set generated, population mean, and population standar deviation. It is possible to select size of the subsample set (as a percentaje of the original sample, wich is selected with a slider. that shows an example for a normal population. The steeps to generate the sample are:</p>
+
+<ol>
+<li>Generate a set of n = 1000 data from a normal population with mean and standar deviation 2.</li>
+<li>Plot an histogram with this data.</li>
+<li>Plot a yellow line indicating the population mean.</li>
+<li>Select a subsample of m = 1% of the original sample data (it means 10 data).</li>
+<li>Calculate the subasample mean and standar deviation.</li>
+<li>Plot a red line indicating the subsample mean.<br></li>
+</ol>
+
+<p>It is possible to observe that when the percentage is increased the sample mean (red line) is closest to the population mean (yellow line). The sample mean and standar deviation are showed in upper left corner of the plot.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Code of the example</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The code for the example is:</p>
+
+<pre><code>n = 1000; mu = 5; sigma = 2
+nNumbers &lt;- rnorm(n, mu, sigma)
+hist(nNumbers, xlab=&#39;data&#39;, col=&#39;lightblue&#39;,main=&#39;Normal Data Histogram&#39;)
+percentage &lt;- 1
+samp &lt;- sample(nNumbers, round(percentage*n/100))
+xBar &lt;- mean(samp)
+s &lt;- sd(samp)
+minDataX &lt;- min(nNumbers)+1
+maxDataY &lt;- n*.19
+lines(c(mu, mu), c(0, 2000),col=&quot;yellow&quot;,lwd=5)
+lines(c(xBar, xBar), c(0, 2000),col=&quot;red&quot;,lwd=5)   
+text(minDataX, maxDataY, paste(&quot;xBar = &quot;, round(xBar,2)))
+text(minDataX, maxDataY*0.95, paste(&quot;s = &quot;, round(s,2)))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Graph of the example</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The result graph of the example, without interacction (the shiny app is interctive) is:</p>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-1"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Sample vs Population'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Sample Size and functions in R'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='App instructions and an example'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Code of the example'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Graph of the example'>
+         5
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
