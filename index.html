@@ -49,8 +49,21 @@
     <ul>
 <li>There are two very common parameters to describe a population: mean and standar deviation</li>
 <li>If you have a data set (sample) taken from the a population, and you want to know the population parameters, its is possible to obtain an estimation of these parameters based on the data set.</li>
-<li>A good estimation for the population mean \(\mu\) is the mean of the sample \(\bar{x}\), that is calculated as \[\bar{x} = \frac{\sum x_i}{n}\]</li>
-<li>In the same form, a good estimation for the population standar deviation \(\sigma\) is the sample standar deviation \(s\), that is calculated as \[s = \sqrt{\frac{\sum (x_i - \bar{x})}{n-1}}\]</li>
+<li>A good estimation for the population mean \(\mu\) is the mean of the sample \(\bar{x}\), that is calculated as \(\bar{x} = \frac{\sum x_i}{n}\), and in R with the function:</li>
+</ul>
+
+<pre><code>mean(X)
+</code></pre>
+
+<ul>
+<li>In the same form, a good estimation for the population standar deviation \(\sigma\) is the sample standar deviation \(s\), that is calculated as \(s = \sqrt{\frac{\sum (x_i - \bar{x})}{n-1}}\), and R with the function:</li>
+</ul>
+
+<pre><code>sd(X)
+</code></pre>
+
+<ul>
+<li>The estimators will be better if the sample size is bigger.</li>
 </ul>
 
   </article>
@@ -59,38 +72,13 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Sample Size and functions in R</h2>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>The estimators will be better if the sample size is bigger.</li>
-<li>The bigger the size of the sample, the better the population parameters are estimated by the sample parameters.</li>
-<li>In R, there is a function called \(mean\) to calculate the sample mean. For a data set contained in \(X\) its format is:</li>
-</ul>
-
-<pre><code>mean(X)
-</code></pre>
-
-<ul>
-<li>There is a function called \(sd\) to calculate the standar deviation. For a data set contained in \(X\) its format is:</li>
-</ul>
-
-<pre><code>sd(X)
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-3" style="background:;">
-  <hgroup>
-    <h2>App instructions and an example</h2>
+    <h2>App instructions and example</h2>
   </hgroup>
   <article data-timings="">
     <p>My shiny interactive app allows the user to select values for the size data set generated, population mean, and population standar deviation. It is possible to select size of the subsample set (as a percentaje of the original sample, wich is selected with a slider. that shows an example for a normal population. The steeps to generate the sample are:</p>
 
 <ol>
-<li>Generate a set of n = 1000 data from a normal population with mean and standar deviation 2.</li>
+<li>Generate a set of 1000 data from a normal(5,2) population.</li>
 <li>Plot an histogram with this data.</li>
 <li>Plot a yellow line indicating the population mean.</li>
 <li>Select a subsample of m = 1% of the original sample data (it means 10 data).</li>
@@ -104,7 +92,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-4" style="background:;">
+<slide class="" id="slide-3" style="background:;">
   <hgroup>
     <h2>Code of the example</h2>
   </hgroup>
@@ -130,7 +118,7 @@ text(minDataX, maxDataY*0.95, paste(&quot;s = &quot;, round(s,2)))
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-5" style="background:;">
+<slide class="" id="slide-4" style="background:;">
   <hgroup>
     <h2>Graph of the example</h2>
   </hgroup>
@@ -155,26 +143,20 @@ text(minDataX, maxDataY*0.95, paste(&quot;s = &quot;, round(s,2)))
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Sample Size and functions in R'>
+        data-slide=2 title='App instructions and example'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='App instructions and an example'>
+        data-slide=3 title='Code of the example'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='Code of the example'>
+        data-slide=4 title='Graph of the example'>
          4
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='Graph of the example'>
-         5
       </a>
     </li>
   </ul>
